@@ -1,0 +1,66 @@
+% File: qadi_titlepage.sty
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{qadi_titlepage}[2025/10/29 v1.0 QADI title/cover pages]
+
+\RequirePackage{graphicx}
+\RequirePackage{hyperref}
+\RequirePackage{titling}
+\RequirePackage{etoolbox}
+\newif\ifqadicover
+\DeclareOption{coverpage}{\qadicovertrue}
+\DeclareOption{compact}{\qadicoverfalse}
+\ExecuteOptions{coverpage}
+\ProcessOptions\relax
+
+% ---------- User-settable hooks ----------
+\newcommand{\QADIInstitution}{\textbf{Quantum AetherDynamics Institute (QADI)}, Alma, Illinois, USA}
+\newcommand{\QADIROR}{} % set later when ROR is issued, e.g., \renewcommand{\QADIROR}{\href{https://ror.org/XXXXXXXXX}{https://ror.org/XXXXXXXXX}}
+\newcommand{\QADILogo}{qadi_logo_small.png} % default logo file name
+\newcommand{\QADIVersion}{Version 1.0}
+\newcommand{\QADIDate}{November 17, 2025}
+
+% ---------- Compact title (no separate cover) ----------
+\newcommand{\QADICompactTitle}{%
+  \pretitle{%
+    \begin{center}\vspace*{-8pt}\includegraphics[width=1.15in]{\QADILogo}\par\vspace{8mm}\LARGE}
+  \posttitle{\par\end{center}\vspace{2mm}}
+}
+
+% ---------- Full cover page (separate title page follows) ----------
+\newcommand{\QADICoverPage}{%
+  \begin{titlepage}
+  \centering
+  \vspace*{10mm}
+  \includegraphics[width=1.7in]{\QADILogo}
+
+  \vspace{10mm}
+  {\Large\bfseries Quantum AetherDynamics Institute (QADI)\par}
+  \vspace{6mm}
+  {\large Alma, Illinois, USA\par}
+
+  \vspace{20mm}
+  {\huge\bfseries \thetitle\par}
+
+  \vspace{12mm}
+  {\large\bfseries \QADIVersion{} — \QADIDate\par}
+
+  \vspace{22mm}
+  {\small QADI is a private non-profit 501(c)(3) research organization advancing the Aether Physics Model (APM)
+  and Quantum Measurement Units (QMU) through open, falsifiable science and fully reproducible metrology.
+  All publications, data, and code are archived openly with DOIs.\par}
+
+  \vfill
+  {\small This document establishes QADI's canonical institutional reference for scholarly attribution.}
+  \end{titlepage}
+}
+
+% ---------- Public command to render title area ----------
+\newcommand{\QADIMakeTitle}{%
+  \ifqadicover
+    \QADICoverPage
+    \maketitle
+  \else
+    \QADICompactTitle
+    \maketitle
+  \fi
+}

@@ -1,0 +1,18 @@
+% File: qadi_macros.tex
+% Minimal APM/QMU macro set (ledger-first; no SI in main text)
+% Upgraded to robust, math-safe (\ensuremath) symbols and cleaned duplicates.
+% Keep author metadata in main.tex (do not set \author here).
+
+% Only keep composite macros here
+\DeclareRobustCommand{\LedgerOne}{\ensuremath{\Au\,\curlapm=\Fq^{2}\,\lC^{2}}}
+\DeclareRobustCommand{\LedgerGforce}{\ensuremath{\Gforce=\lC\,\Fq^{2}\,\ma}}
+\DeclareRobustCommand{\BaseSet}{\ensuremath{\{\me,\lC,\Fq,\eesq,\eemaxsq\}}}
+
+
+% -------- Affiliation helpers (no \author here) --------
+\newcommand{\QADIAffiliation}[1][]{%
+  \textbf{Quantum AetherDynamics Institute (QADI)}, Alma, Illinois, USA%
+  \ifx#1\empty\else\\ROR: \href{https://ror.org/#1}{https://ror.org/#1}\fi}
+
+\newcommand{\QADIAuthor}[2]{%
+  #1\\\QADIAffiliation\\\href{https://orcid.org/#2}{ORCID: #2}}

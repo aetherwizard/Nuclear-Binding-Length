@@ -1,0 +1,11 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{qadi_ledger_patch}[2025/10/30 ledger superscript placement]
+
+\providecommand{\PowTwo}[1]{\mathop{\kern0pt #1}\nolimits^{2}}
+
+\AtBeginDocument{%
+  \providecommand{\LedgerOne}{}%
+  \renewcommand{\LedgerOne}{%
+    \ensuremath{\Au\,\curlapm \;=\; \PowTwo{F_{q}}\,\PowTwo{\lambda_{C}}}%
+  }%
+}
